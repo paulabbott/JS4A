@@ -1,0 +1,113 @@
+<head>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script>
+  var data = {
+    start: {
+      question: "I am not a robot",
+      questionImage: "https://images.unsplash.com/photo-1446848048977-96d78ec4d162?ixlib=rb-0.3.5&q=85&fm=jpg&crop=entropy&cs=srgb&ixid=eyJhcHBfaWQiOjE0NTg5fQ&s=8ddcc507f0c511fc28b9f7d52e42df43",
+      answer1: "true",
+      link1: "q2",
+      answer2: "false",
+      link2: "q3"
+    },
+    q2: {
+      question: "Are you sure?",
+      questionImage: "https://images.unsplash.com/photo-1510243968-c43ea0ea4b4c?ixlib=rb-0.3.5&q=85&fm=jpg&crop=entropy&cs=srgb&ixid=eyJhcHBfaWQiOjE0NTg5fQ&s=416069e0244856d06407e5e0fe1e0462",
+      answer1: "absolutely",
+      link1: "q3",
+      answer2: "not really",
+      link2: "start"
+    },
+    q3: {
+      question: "Can you recognise other humans?",
+      questionImage: "https://images.unsplash.com/photo-1461800919507-79b16743b257?ixlib=rb-0.3.5&q=85&fm=jpg&crop=entropy&cs=srgb&ixid=eyJhcHBfaWQiOjE0NTg5fQ&s=8c4948eee7b04507f3d75672189758f5",
+      answer1: "of course",
+      link1: "start",
+      answer2: "not all of the time",
+      link2: "start"
+    }
+  };
+
+  function initialize() {
+    $("#question").hide();
+    $("#questionImage").hide();
+    $("#answer1").hide();
+    $("#answer2").hide();
+    loadQuestion('start');
+  }
+
+  function loadQuestion(questionName) {
+      $("#question").fadeOut(1000);
+      $("#questionImage").fadeOut(1000);
+      $("#answer1").fadeOut(1000);
+      $("#answer2").fadeOut(1000, function () { updateElements(questionName); } );
+      //old way
+      //setTimeout(function () { updateElements(questionName) }, 1000);
+
+      //fade in the divs
+      $("#question").fadeIn(1000);
+      $("#questionImage").delay(500).fadeIn(1000);
+      $("#answer1").delay(700).fadeIn(1000);
+      $("#answer2").delay(900).fadeIn(1000);
+  }
+
+  function updateElements(questionName) {
+      console.log('called updateElements');
+        // console.log("question details=", data[questionName]);
+      // change the text of the questions and answers (while they are still hidden)
+      document.getElementById("question").innerHTML = data[questionName].question;
+      document.getElementById("questionImage").src = data[questionName].questionImage;
+      document.getElementById("answer1").innerHTML = data[questionName].answer1;
+      document.getElementById("answer2").innerHTML = data[questionName].answer2;
+      // change what happens on the onclick event of each question
+      // the function () bit here is annoying.
+      document.getElementById("answer1").onclick = function() { loadQuestion(data[questionName].link1); };
+      document.getElementById("answer2").onclick = function() { loadQuestion(data[questionName].link2); };
+  }
+  </script>
+  <style>
+  #wrapper{
+    width:300px;
+    margin:8px auto;
+  }
+
+
+  img{
+    margin:5px;
+    width: 320px;
+    height: 240px;
+  }
+
+  #question{
+    width: 300px;
+    background:#ddd;
+    padding:10px;
+    margin:5px;
+    text-align:center;
+  }
+
+  #answer1, #answer2 {
+    width: 300px;
+    padding:10px;
+    margin:5px;
+    text-align:center;
+  }
+
+  #answer1 {
+    background:#afa;
+  }
+
+  #answer2 {
+    background:#faa;
+  }  
+  </style>
+</head>
+
+<body onload="initialize()">
+  <div id="wrapper">
+    <div id="question"></div>
+    <img id="questionImage">
+    <div id="answer1">testing</div>
+    <div id="answer2">testing</div>
+  </div>
+</body>

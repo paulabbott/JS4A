@@ -1,0 +1,33 @@
+<!-- starting from:
+https://www.w3schools.com/js/tryit.asp?filename=tryjs_intro_inner_html
+-->
+<!DOCTYPE html>
+<html>
+<head>
+<script>
+// this object will eventually hold all our questions and options.
+// as key : value pairs.
+var questions = {
+  start: { text: "are you a ROBOT?", a1: "yes", a2: "no" },
+  q2: { text: "do you often try and pose as a human?", a1: "yes", a2: "no" },
+  q3: { text: "can you recognise human faces?", a1: "yes", a2: "no" }
+};
+
+function loadQuestion(key) {
+  console.log("key=", key);
+  document.getElementById("question").innerHTML = questions[key].text;
+  document.getElementById("answer1").innerHTML = questions[key].a1;
+  document.getElementById("answer2").innerHTML = questions[key].a2;
+}
+</script>
+</head>
+<body onLoad='loadQuestion("start")'>
+
+<h2>What Can JavaScript Do?</h2>
+
+<div id="question">We are going to change this text using JavaScript</div>
+<div id="answer1" onclick='loadQuestion("q2")'>We are going to change this text using JavaScript</div>
+<div id="answer2" onclick='loadQuestion("q3")'>We are going to change this text using JavaScript</div>
+
+</body>
+</html>

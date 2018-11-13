@@ -1,0 +1,25 @@
+<!-- starting from:
+https://www.w3schools.com/js/tryit.asp?filename=tryjs_intro_inner_html
+-->
+<!DOCTYPE html>
+<html>
+<head>
+<script>
+function loadQuestion() {
+  document.getElementById("question").innerHTML =
+    "This will become our new question";
+}
+</script>
+</head>
+<body>
+
+<h2>What Can JavaScript Do?</h2>
+
+<p id="question">We are going to change this text using JavaScript</p>
+<p id="answer1">We are going to change this text using JavaScript</p>
+<p id="answer2">We are going to change this text using JavaScript</p>
+
+<button type="button" onclick='loadQuestion()'>Click Me!</button>
+
+</body>
+</html>
